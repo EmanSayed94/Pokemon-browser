@@ -1,11 +1,60 @@
-import React from 'react'
+import { useState } from "react";
+import { usePokemonList } from "../../hooks/useGetPokemonList";
 
-const PaginationView = () => {
+
+
+export default function PaginationView() {
+  const [page, setPage] = useState(1);
+
+  const limit = 12;
+
+  const { data, isLoading, isError, refetch, isFetching } = usePokemonList(limit, page);
+
+  if (isLoading) {
+    return (
+      <div>Loading</div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="flex flex-col items-center">
+        <p className="mb-2 text-red-500">Error loading Pokémon data.</p>
+        <button
+          onClick={() => refetch()}
+          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div>
-      PaginationView
-    </div>
-  )
-}
+      {isFetching && (
+        <div className="flex justify-center mb-4">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-500"></div>
+        </div>
+      )}
 
-export default PaginationView
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4  gap-4">
+        {data.results.map((pokemon: { name: string; url: string }) => {
+          const id = pokemon.url.split("/").filter(Boolean).pop();
+          const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+
+          return (
+            <div key={pokemon.name}>
+              <div>{id}</div>
+              <div>{pokemon.name}</div>
+              <img src={image} alt={pokemon.name} />
+            </div>
+          );
+        })}
+
+      </div>
+
+
+    </div>
+  );
+}
