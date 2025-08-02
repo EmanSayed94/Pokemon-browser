@@ -14,7 +14,7 @@ function App() {
           <Route path="pagination" element={<PaginationView />} />
           <Route path="load-more" element={<LoadMoreView />} />
         </Route>
-        <Route path="/pokemon/:name" element={<PokemonDetail />} />
+        <Route path="/pokemon/:id" element={<PokemonDetail />} />
 
       </Routes>
     </div>

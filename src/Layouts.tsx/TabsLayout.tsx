@@ -22,14 +22,13 @@ export default function LayoutWithTabs() {
             Pagination
           </TabLink>
           <TabLink to="load-more" active={isLoadMoreView}>
-            Load More
+            Infinite Scroll
           </TabLink>
         </div>
       </header>
 
       <main className="p-4">
         <div className="container mx-auto md:px-4 lg:px-28">
-
           <Outlet />
         </div>
       </main>
