@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { usePokemonList } from "../../hooks/useGetPokemonList";
+import PokemonCardSkeleton from "../../components/skeletons/PokemonCardSkeleton";
+import PokemonCard from "../../components/PokemonCard";
+import PokemonListSkeleton from "../../components/skeletons/PokemonListSkeleton";
 
 
 
@@ -12,7 +15,7 @@ export default function PaginationView() {
 
   if (isLoading) {
     return (
-      <div>Loading</div>
+      <PokemonListSkeleton limit={limit} />
     );
   }
 
@@ -38,16 +41,14 @@ export default function PaginationView() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4  gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {data.results.map((pokemon: { name: string; url: string }) => {
-          const id = pokemon.url.split("/").filter(Boolean).pop();
+          const id = pokemon.url.split("/").filter(Boolean).pop() ?? "";
           const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 
           return (
             <div key={pokemon.name}>
-              <div>{id}</div>
-              <div>{pokemon.name}</div>
-              <img src={image} alt={pokemon.name} />
+              <PokemonCard name={pokemon.name} image={image} id={id} />
             </div>
           );
         })}
