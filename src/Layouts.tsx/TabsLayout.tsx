@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import TabLink from "../components/TabLink/TabLink";
 
 export default function LayoutWithTabs() {
@@ -9,12 +9,13 @@ export default function LayoutWithTabs() {
 
   return (
     <div
-      className={`p-2 min-h-screen transition-colors duration-500 ease-in-out ${isPaginationView ? "bg-gray-300" : "bg-green-100"
+      className={`p-2 py-12 min-h-screen transition-colors duration-500 ease-in-out ${isPaginationView ? "bg-gray-300" : "bg-green-100"
         }`}
     >
       <header>
-        <div className="flex items-center justify-center gap-2">
-          <h1 className="text-xl font-bold mb-4">Pokédex Browser</h1>
+        <div className="flex flex-col items-center justify-center gap-2 mb-4">
+          <h1 className="text-2xl font-bold mb-1">Pokédex Browser</h1>
+          <p>Discover and explore Pokemon with page controls</p>
         </div>
         <div className="flex items-center justify-center gap-4">
           <TabLink to="pagination" active={isPaginationView}>

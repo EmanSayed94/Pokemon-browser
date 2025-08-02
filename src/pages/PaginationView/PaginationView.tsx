@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { usePokemonList } from "../../hooks/useGetPokemonList";
-import PokemonCardSkeleton from "../../components/skeletons/PokemonCardSkeleton";
-import PokemonCard from "../../components/PokemonCard";
 import PokemonListSkeleton from "../../components/skeletons/PokemonListSkeleton";
 import AppPagination from "../../components/Pagination";
+import PokemonList from "../../components/PokemonList";
 
 
 
@@ -43,17 +42,7 @@ export default function PaginationView() {
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        {data.results.map((pokemon: { name: string; url: string }) => {
-          const id = pokemon.url.split("/").filter(Boolean).pop() ?? "";
-          const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-
-          return (
-            <div key={pokemon.name}>
-              <PokemonCard name={pokemon.name} image={image} id={id} />
-            </div>
-          );
-        })}
-
+        <PokemonList data={data.results} />
       </div>
       <div className="flex justify-center mt-4 space-x-2  bottom-4">
 
