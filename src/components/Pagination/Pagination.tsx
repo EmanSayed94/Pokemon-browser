@@ -1,6 +1,5 @@
-import React from "react";
 import Pagination from "rc-pagination";
-import 'rc-pagination/assets/index.css'; // Optional, remove if doing full Tailwind styling
+import 'rc-pagination/assets/index.css';
 
 interface AppPaginationProps {
   total: number;

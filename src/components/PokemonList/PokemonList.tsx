@@ -1,6 +1,6 @@
 import PokemonCard from "../PokemonCard";
 interface PokemonListProps {
-  data: { name: string; url: string }[]; // or PokemonCardProps[] if structure matches exactly
+  data: { name: string; url: string }[];
 }
 const PokemonList = ({ data }: PokemonListProps) => {
   return (
