@@ -28,15 +28,14 @@ export default function LoadMoreView() {
         <div className="flex justify-center mt-4">
           <button
             onClick={() => {
-              console.log("load more");
               fetchNextPage();
             }}
-            className={`flex gap-2 items-center px-4 py-2 rounded transition `}
+            className={`flex gap-2 items-center border-2 px-4 py-2 rounded transition `}
           >
-            <div className={`w-6 h-6 border-4 rounded-full`}
-            ></div>
-
+            {/* <div className={`w-6 h-6 border-4 rounded-full`}
+            ></div> */}
             Load More
+
           </button>
 
         </div>
